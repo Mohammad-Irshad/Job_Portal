@@ -47,7 +47,7 @@ function App() {
         <section className='container'>
           <h3>All Jobs</h3>
           <div className='row'>
-          {status === 'loading' && <p>Loading...</p>}
+          {filteredJobs.length === 0 && <p>Loading...</p>}
           {filteredJobs.length != 0 ? filteredJobs.map((job) => (
               <div className='col-md-4 mb-3' key={job._id}>
                 <div class="card">
