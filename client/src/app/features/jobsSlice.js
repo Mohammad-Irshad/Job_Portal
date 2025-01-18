@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export const addNewJob = createAsyncThunk('job/addNewJob', async (jobData, {rejectWithValue}) => {
     try{
-        const response = await axios.post(`http://localhost:3000/addNewJob`, jobData)
+        const response = await axios.post(`https://job-portal-ten-eosin.vercel.app/addNewJob`, jobData)
         console.log("Added Job : ", response.data)
         return response.data
     }catch(error){
@@ -13,7 +13,7 @@ export const addNewJob = createAsyncThunk('job/addNewJob', async (jobData, {reje
 
 export const getAllJobs = createAsyncThunk('job/getAllJobs', async () => {
     try{
-        const response = await axios.get(`http://localhost:3000/getAllJobs`)
+        const response = await axios.get(`https://job-portal-ten-eosin.vercel.app/getAllJobs`)
         console.log("All fetched jobs : ",response.data)
         return response.data
     }catch(error){
@@ -23,7 +23,7 @@ export const getAllJobs = createAsyncThunk('job/getAllJobs', async () => {
 
 export const updateJob = createAsyncThunk('job/updateJob', async ({jobId, updatedData}) => {
     try{
-        const response = await axios.post(`http://localhost:3000/updateJob/${jobId}`, updatedData)
+        const response = await axios.post(`https://job-portal-ten-eosin.vercel.app/updateJob/${jobId}`, updatedData)
         console.log("Updated Job : ", response.data)
         return response.data
     }catch(error){
@@ -33,7 +33,7 @@ export const updateJob = createAsyncThunk('job/updateJob', async ({jobId, update
 
 export const deleteJob = createAsyncThunk('job/deleteJob', async (jobId) => {
     try{
-        const response = await axios.delete(`http://localhost:3000/deleteJob/${jobId}`)
+        const response = await axios.delete(`https://job-portal-ten-eosin.vercel.app/deleteJob/${jobId}`)
         console.log("Deleted Job", response.data)
         return response.data
     }catch(error){
