@@ -49,7 +49,7 @@ function App() {
           <div className='row'>
           {filteredJobs.length === 0 && <p>Loading...</p>}
           {filteredJobs.length != 0 ? filteredJobs.map((job) => (
-              <div className='col-md-4 mb-3'>
+              <div className='col-md-4 mb-3' key={job._id}>
                 <div class="card">
                   <div className="card-body">
                     <h5 className="card-title">{job.jobTitle}</h5>

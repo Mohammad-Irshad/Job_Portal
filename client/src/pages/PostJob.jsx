@@ -23,11 +23,11 @@ const PostJob = () => {
     const handleChange = (e) => {
         const {name , value} = e.target
 
-        if(name === 'qualifications'){
-            let qlfs = value.split('\n').filter((q) => q.trim() !== "")
-            setJobPostData({...jobPostData, [name] : qlfs})
-            return
-        }
+        // if(name === 'qualifications'){
+        //     let qlfs = value.split('\n').filter((q) => q.trim() !== "")
+        //     setJobPostData({...jobPostData, [name] : qlfs})
+        //     return
+        // }
 
         setJobPostData({...jobPostData, [name] : value})
     }
@@ -35,16 +35,21 @@ const PostJob = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(jobPostData)
 
-        if(!jobPostData.jobTitle || !jobPostData.companyName || !jobPostData.location || !jobPostData.salary || !jobPostData.jobType || !jobPostData.description || jobPostData.qualifications.length === 0){
+        const processedQualifications = jobPostData.qualifications
+        .split('\n')
+        .filter((q) => q.trim() !== "")
+
+        const finalJobPostData = { ...jobPostData, qualifications: processedQualifications }
+
+        if(!finalJobPostData.jobTitle || !finalJobPostData.companyName || !finalJobPostData.location || !finalJobPostData.salary || !finalJobPostData.jobType || !finalJobPostData.description || finalJobPostData.qualifications.length === 0){
             setSuccessMessage(null)
             setErrorMessage("All fields are mandatory")
             return 
         }
-
+        console.log(finalJobPostData)
         try{
-            const result = await dispatch(addNewJob(jobPostData)).unwrap()
+            const result = await dispatch(addNewJob(finalJobPostData)).unwrap()
             if(result){
                 setErrorMessage(null)
                 setSuccessMessage("Job Added successfully")
@@ -93,7 +98,7 @@ const PostJob = () => {
                 <label className='form-label'>Job Description:</label>
                 <input type='text' className='form-control' name='description' value={jobPostData.description} onChange={(e) => handleChange(e)} />
                 <label className='form-label'>Job Qualifications:</label>
-                <textarea className='form-control' name='qualifications' value={jobPostData.qualifications.join('\n')} onChange={(e) => handleChange(e)}></textarea>
+                <textarea className='form-control' name='qualifications' value={jobPostData.qualifications} onChange={(e) => handleChange(e)}></textarea>
                 <br/>
                 <button type='submit' className='btn btn-primary mb-2'>Post Job</button>
             </form>
