@@ -48,7 +48,7 @@ function App() {
           <h3>All Jobs</h3>
           <div className='row'>
           {filteredJobs.length === 0 && <p>Loading...</p>}
-          {filteredJobs.length != 0 && filteredJobs.map((job) => (
+          {filteredJobs.length != 0 ? filteredJobs.map((job) => (
               <div className='col-md-4 mb-3'>
                 <div class="card">
                   <div className="card-body">
@@ -63,7 +63,13 @@ function App() {
                   </div>
                 </div>
               </div>
-          ))}
+          ))
+
+          :
+
+          <p>No Job is listed right now check after sometime!</p>
+        
+        }
             
           </div>
         </section>
