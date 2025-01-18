@@ -14,7 +14,7 @@ function App() {
 
   const dispatch = useDispatch()
 
-  const {jobs} = useSelector((state) => state.jobs)
+  const {jobs, status} = useSelector((state) => state.jobs)
 
   console.log("All jobs", jobs)
 
@@ -47,7 +47,7 @@ function App() {
         <section className='container'>
           <h3>All Jobs</h3>
           <div className='row'>
-          {filteredJobs.length === 0 && <p>Loading...</p>}
+          {status === 'loading' && <p>Loading...</p>}
           {filteredJobs.length != 0 ? filteredJobs.map((job) => (
               <div className='col-md-4 mb-3' key={job._id}>
                 <div class="card">
@@ -67,7 +67,7 @@ function App() {
 
           :
 
-          <p>No Job is listed right now check after sometime!</p>
+          status === 'success' && <p>No Job is listed right now check after sometime!</p>
         
         }
             

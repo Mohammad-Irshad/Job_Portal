@@ -23,12 +23,6 @@ const PostJob = () => {
     const handleChange = (e) => {
         const {name , value} = e.target
 
-        // if(name === 'qualifications'){
-        //     let qlfs = value.split('\n').filter((q) => q.trim() !== "")
-        //     setJobPostData({...jobPostData, [name] : qlfs})
-        //     return
-        // }
-
         setJobPostData({...jobPostData, [name] : value})
     }
 
