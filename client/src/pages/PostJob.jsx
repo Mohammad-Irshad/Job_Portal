@@ -44,7 +44,7 @@ const PostJob = () => {
 
         if(!finalJobPostData.jobTitle || !finalJobPostData.companyName || !finalJobPostData.location || !finalJobPostData.salary || !finalJobPostData.jobType || !finalJobPostData.description || finalJobPostData.qualifications.length === 0){
             setSuccessMessage(null)
-            setErrorMessage("All fields are mandatory")
+            setErrorMessage("All fields are mandatory.")
             return 
         }
         console.log(finalJobPostData)
@@ -52,7 +52,7 @@ const PostJob = () => {
             const result = await dispatch(addNewJob(finalJobPostData)).unwrap()
             if(result){
                 setErrorMessage(null)
-                setSuccessMessage("Job Added successfully")
+                setSuccessMessage("Job added successfully.")
                 setJobPostData({
                     jobTitle: "",
                     companyName: "",
@@ -65,7 +65,7 @@ const PostJob = () => {
             }
 
         }catch(error){
-            setErrorMessage(error.response?.data || error.message || "Failed to add Job")
+            setErrorMessage(error.response?.data || error.message || "Failed to add Job.")
             setSuccessMessage(null)
             console.log("Error :",error)
         }
